@@ -7,9 +7,4 @@ clienteRepositorio.buscarClientePorId = (idCliente) => DB('cliente').select('*')
 clienteRepositorio.buscarClientePorCorreo = (correo) => DB('cliente').select('*').where('correo', correo);
 clienteRepositorio.actualizarCliente = (cliente, idCliente) => DB('cliente').where('idCliente', idCliente).update(cliente).returning('*');
 clienteRepositorio.contarClientePorNit = (nit) => DB('cliente').count('*').where({ nit: nit }).first();
-
-// clienteRepositorio.crearCliente = async(cliente)=>{
-
-
-
-// };
+clienteRepositorio.eliminarCliente = (idCliente) => DB('cliente').select('*').where('idCliente', idCliente).del().returning('*');
