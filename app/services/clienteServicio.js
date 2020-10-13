@@ -37,7 +37,7 @@ clienteServicio.crearCliente = async(cliente) => {
             telefono: telefono,
             idTaller: idTaller
         });
-        return clienteCreado;
+        return { clienteCreado, mensaje: 'agregado' };
     }
     return null;
 

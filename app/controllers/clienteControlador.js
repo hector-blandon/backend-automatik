@@ -78,7 +78,7 @@ clienteControlador.actualizarCliente = async(req, res) => {
     return clienteServicio.actualizarCliente(body, idCliente)
         .then((response) => res.send(response));
 };
-
+// actualizar el estado del cliente
 clienteControlador.eliminarCliente = async(req, res, next) => {
     const { idCliente } = req.params;
     return clienteServicio.eliminarCliente(idCliente)
