@@ -37,70 +37,35 @@ clienteServicio.crearCliente = async(cliente) => {
             telefono: telefono,
             idTaller: idTaller
         });
-        return clienteCreado;
+        return { clienteCreado, mensaje: 'agregado' };
     }
     return null;
 
 };
-// userService.findAuthIdByUserId = async(userid, options = {}) => {
-//     const {
-//         logger = defaultLogger,
-//     } = options;
-//     logger.info(`userService.getUsers with ${JSON.stringify(userid)}`);
+clienteServicio.buscarClientePorNit = async(nit) => {
+    console.log('clienteServicio.buscarClientePorNit');
+    const cliente = await clienteRepositorio.buscarClientePorNit(nit);
 
+    return cliente
+};
+clienteServicio.buscarClientePorId = async(idCliente) => {
+    console.log('clienteServicio.buscarClientePorId');
+    const cliente = await clienteRepositorio.buscarClientePorId(idCliente);
 
-//     logger.info(`authServices.getOne with ${JSON.stringify(userid)}`);
+    return cliente
+};
+clienteServicio.buscarClientePorCorreo = async(correo) => {
+    console.log('clienteServicio.buscarClientePorCorreo');
+    const cliente = await clienteRepositorio.buscarClientePorCorreo(correo);
 
-//     const user = await userRepository.findUserByAuthId(userid);
+    return cliente
+};
+clienteServicio.actualizarCliente = async(cliente, idCliente) => {
+    const [client] = await clienteRepositorio.actualizarCliente(cliente, idCliente);
+    return client;
+};
 
-//     return user;
-// };
-// userService.findByUserId = async(userid, options = {}) => {
-//     const {
-//         logger = defaultLogger,
-//     } = options;
-//     logger.info(`userService.findByUserId with ${JSON.stringify(userid)}`);
-//     const [user] = await userRepository.findByUserId(userid);
-
-
-//     return user;
-// };
-
-
-// userService.updateUser = async(user, userid, options = {}) => {
-//     const {
-//         logger = defaultLogger,
-//     } = options;
-//     logger.info(`userService.updateUser with ${JSON.stringify(user)}`);
-//     logger.info(`userService.updateUser with ${JSON.stringify(userid)}`);
-//     const [client] = await userRepository.updateUser(user, userid);
-
-//     return client;
-// };
-// userService.resetPassword = async(user, options = {}) => {
-//     const {
-//         logger = defaultLogger,
-//     } = options;
-//     logger.info(`userService.resetPassword with ${JSON.stringify(user)}`);
-//     const newPassword = Math.random().toString(36).substr(2, 5);
-//     const hash = bcrypt.hashSync(newPassword);
-//     const emailAuthId = await authRepository.getIdByEmail(user.authEmail);
-//     const userAuthId = await userRepository.findAuthIdByUserId(user.userIdentification);
-//     const roleid = 1;
-//     const data = {
-//         authEmail: user.authEmail,
-//         authPassword: hash,
-//         roleId: roleid,
-//     };
-
-//     if (emailAuthId.authId === userAuthId.authId) {
-//         const [success] = await authRepository.update(emailAuthId.authId, data);
-//         await emailController.sendEmailPassword(user.authEmail, newPassword);
-//         console.log(newPassword);
-
-
-//         return success;
-//     }
-
-//     return null;
-// };
+clienteServicio.eliminarCliente = async(idCliente) => {
+    const cliente = await clienteRepositorio.eliminarCliente(idCliente);
+    return cliente
+};

@@ -28,7 +28,7 @@ class SERVER {
 
     start() {
         this.app.listen(PORT, () => {
-            console.log('SERVER ON PORT MS USER: ', PORT);
+            console.log('SERVER ON PORT BACKEND: ', PORT);
         });
     }
 }

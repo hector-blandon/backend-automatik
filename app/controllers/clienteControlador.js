@@ -49,56 +49,39 @@ clienteControlador.crearCliente = async(req, res, next) => {
 };
 
 
-// userController.findByUserId = async(req, res, next) => {
-//     const logName = 'findByUserId: ';
-//     const logger = LogUtils.getLoggerWithId(log4j, logName);
-//     const { userid } = req.params;
-//     logger.info(`Start userController.findByUserId: params ${JSON.stringify(userid)}`);
+clienteControlador.buscarClientePorNit = async(req, res, next) => {
+    console.log('clienteControlador.buscarClientePorNit');
+    const { nit } = req.params;
+    return clienteServicio.buscarClientePorNit(nit)
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
+clienteControlador.buscarClientePorId = async(req, res, next) => {
+    console.log('clienteControlador.buscarClientePorId');
+    const { idCliente } = req.params;
+    return clienteServicio.buscarClientePorId(idCliente)
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
+clienteControlador.buscarClientePorCorreo = async(req, res, next) => {
+    console.log('clienteControlador.buscarClientePorCorreo');
+    const { correo } = req.params;
+    return clienteServicio.buscarClientePorCorreo(correo)
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
 
 
-//     return userService.findByUserId(userid, { logger, logName })
-//         .then((response) => res.send(response))
-//         .catch((error) => next(new BaseError(error.message)));
-// };
-
-
-// userController.updateUser = async(req, res) => {
-//     const logName = 'updateUser : ';
-//     const logger = LogUtils.getLoggerWithId(log4j, logName);
-
-//     const { body } = req;
-//     logger.info(`Start userController.updateUser: body ${JSON.stringify(body)}`);
-
-//     const { userid } = req.params;
-//     logger.info(`Start userController.updateUser: params ${JSON.stringify(userid)}`);
-
-//     return userService.updateUser(body, userid, { logger, logName })
-//         .then((response) => res.send(response));
-// };
-
-// userController.resetPassword = async(req, res, next) => {
-//     const logName = 'resetPasword: ';
-//     const logger = LogUtils.getLoggerWithId(log4j, logName);
-//     const { body } = req;
-//     logger.info(`Starts userController.resetPassword: params ${JSON.stringify(body)}`);
-
-//     try {
-//         return userService.resetPassword(body, { logger, logName })
-//             .then((response) => res.send(response))
-//             .catch((error) => next(new BaseError(error.message)));
-//     } catch (error) {
-//         return next(error);
-//     }
-// };
-
-// userController.findAuthIdByUserId = async(req, res, next) => {
-//     const logName = 'findAuthIdByUserId: ';
-//     const logger = LogUtils.getLoggerWithId(log4j, logName);
-//     const { params } = req;
-//     logger.info(`Start userController.findAuthIdByUserId: params ${JSON.stringify(params.authid)}`);
-
-
-//     return userService.findAuthIdByUserId(params.authid, { logger, logName })
-//         .then((response) => res.send(response))
-//         .catch((error) => next(new BaseError(error.message)));
-// };
+clienteControlador.actualizarCliente = async(req, res) => {
+    const { body } = req;
+    const { idCliente } = req.params;
+    return clienteServicio.actualizarCliente(body, idCliente)
+        .then((response) => res.send(response));
+};
+// actualizar el estado del cliente
+clienteControlador.eliminarCliente = async(req, res, next) => {
+    const { idCliente } = req.params;
+    return clienteServicio.eliminarCliente(idCliente)
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
