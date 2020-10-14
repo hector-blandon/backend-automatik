@@ -1,6 +1,7 @@
 const express = require('express');
 const clienteControlador = require('./controllers/clienteControlador');
 const mecanicoControlador = require('./controllers/mecanicoControlador');
+const administradorControlador = require('./controllers/administradorControlador');
 
 const router = express.Router();
 // Router Cliente
@@ -18,11 +19,11 @@ router.get('/mecanicos/buscarPorCorreo/:correo', mecanicoControlador.buscarMecan
 router.put('/mecanicos/actualizar/:idMecanico', mecanicoControlador.actualizarMecanico);
 router.delete('/mecanicos/eliminar/:idMecanico', mecanicoControlador.eliminarMecanico);
 // Router Adnministrador
-router.post('/administrador', mecanicoControlador.crearMecanico);
-router.get('/administrador/buscarPorNit/:nit', mecanicoControlador.buscarMecanicoPorId);
-router.get('/administrador/buscarPorId/:idAdmin', mecanicoControlador.buscarMecanicoPorId);
-router.get('/administrador/buscarPorCorreo/:correo', mecanicoControlador.buscarMecanicoPorCorreo);
-router.put('/administrador/actualizar/:idAdmin', mecanicoControlador.actualizarMecanico);
-router.delete('/administrador/eliminar/:idAdmin', mecanicoControlador.eliminarMecanico);
+router.post('/administrador', administradorControlador.crearAdministrador);
+router.get('/administrador/buscarPorNit/:nit', administradorControlador.buscarAdministradorPorNit);
+router.get('/administrador/buscarPorId/:idAdmin', administradorControlador.buscarAdministradorPorId);
+router.get('/administrador/buscarPorCorreo/:correo', administradorControlador.buscarAdministradorPorCorreo);
+router.put('/administrador/actualizar/:idAdmin', administradorControlador.actualizarAdministrador);
+router.delete('/administrador/eliminar/:idAdmin', administradorControlador.eliminarAdministrador);
 
 module.exports = router;
