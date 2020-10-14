@@ -2,6 +2,7 @@ const express = require('express');
 const clienteControlador = require('./controllers/clienteControlador');
 const mecanicoControlador = require('./controllers/mecanicoControlador');
 const administradorControlador = require('./controllers/administradorControlador');
+const piezaControlador = require('./controllers/piezaControlador');
 
 const router = express.Router();
 // Router Cliente
@@ -25,5 +26,10 @@ router.get('/administrador/buscarPorId/:idAdmin', administradorControlador.busca
 router.get('/administrador/buscarPorCorreo/:correo', administradorControlador.buscarAdministradorPorCorreo);
 router.put('/administrador/actualizar/:idAdmin', administradorControlador.actualizarAdministrador);
 router.delete('/administrador/eliminar/:idAdmin', administradorControlador.eliminarAdministrador);
+//Router Stock
+router.post('/pieza', piezaControlador.crearPieza);
+router.get('/pieza/buscarPorId/:idPieza', piezaControlador.buscarPiezaPorId);
+router.put('/pieza/actualizar/:idPieza', piezaControlador.actualizarPieza);
+router.delete('/pieza/eliminar/:idPieza', piezaControlador.eliminarPieza);
 
 module.exports = router;
