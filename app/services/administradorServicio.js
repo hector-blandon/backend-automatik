@@ -4,6 +4,7 @@ const administradorRepositorio = require('../repositories/administradorRepositor
 
 administradorServicio.crearAdministrador = async(administrador) => {
     console.log('administradorServicio.crearAdministrador');
+    console.log(administrador);
     const {
         nombre: nombre,
         apellido: apellido,
