@@ -15,7 +15,7 @@ vehiculoServicio.crearVehiculo = async(vehiculo) => {
         marca: marca,
         color: color,
         modelo: modelo,
-        idCliente: 1
+        idCliente: 6
     });
     if (carro !== null) {
         return { mensaje: 'Vehiculo creado correctamente' };
