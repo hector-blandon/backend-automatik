@@ -3,6 +3,7 @@ const clienteControlador = require('./controllers/clienteControlador');
 const mecanicoControlador = require('./controllers/mecanicoControlador');
 const administradorControlador = require('./controllers/administradorControlador');
 const piezaControlador = require('./controllers/piezaControlador');
+const vehiculoControlador = require('./controllers/vehiculoControlador');
 
 const router = express.Router();
 // Router Cliente
@@ -31,5 +32,10 @@ router.post('/pieza', piezaControlador.crearPieza);
 router.get('/pieza/buscarPorId/:idPieza', piezaControlador.buscarPiezaPorId);
 router.put('/pieza/actualizar/:idPieza', piezaControlador.actualizarPieza);
 router.delete('/pieza/eliminar/:idPieza', piezaControlador.eliminarPieza);
+// Router Vehiculo
+router.post('/vehiculos', vehiculoControlador.crearVehiculo);
+router.get('/vehiculos/buscarPorId/:idVehiculo', vehiculoControlador.buscarVehiculoPorId);
+router.put('/vehiculos/actualizar/:idVehiculo', vehiculoControlador.actualizarVehiculo);
+router.delete('/vehiculos/eliminar/:idVehiculo', vehiculoControlador.eliminarVehiculo);
 
 module.exports = router;
