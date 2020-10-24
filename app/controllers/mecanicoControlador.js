@@ -8,6 +8,7 @@ const mecanicoRegisterSchema = require('../validators/clienteRegisterSchema');
 
 mecanicoControlador.crearMecanico = async(req, res, next) => {
     console.log('mecanicoControlador.crearMecanico');
+
     const { body } = req;
     try {
         Validator(mecanicoRegisterSchema).validateRequest(body);

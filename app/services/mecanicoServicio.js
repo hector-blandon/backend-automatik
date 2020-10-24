@@ -23,7 +23,7 @@ mecanicoServicio.crearMecanico = async(mecanico) => {
             telefono: telefono,
             idTaller: idTaller
         });
-        return { mensaje: 'Mecánico agregado exitosamente' };
+        return { mensaje: 'Mecánico creado exitosamente' };
     }
     return null;
 

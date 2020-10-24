@@ -54,3 +54,10 @@ administradorControlador.eliminarAdministrador = async(req, res, next) => {
         .then((response) => res.send(response))
         .catch((error) => next(new BaseError(error.message)));
 };
+administradorControlador.login = async(req, res, next) => {
+    console.log('controlador.login');
+    const { body } = req;
+    return administradorServicio.login(body)
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};

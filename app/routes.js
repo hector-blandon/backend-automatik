@@ -37,5 +37,8 @@ router.post('/vehiculos', vehiculoControlador.crearVehiculo);
 router.get('/vehiculos/buscarPorId/:idVehiculo', vehiculoControlador.buscarVehiculoPorId);
 router.put('/vehiculos/actualizar/:idVehiculo', vehiculoControlador.actualizarVehiculo);
 router.delete('/vehiculos/eliminar/:idVehiculo', vehiculoControlador.eliminarVehiculo);
+// Router Login
+router.post('/login', administradorControlador.login);
+
 
 module.exports = router;
