@@ -57,3 +57,31 @@ administradorServicio.eliminarAdministrador = async(idAdmin) => {
     await administradorRepositorio.eliminarAdministrador(idAdmin);
     return { mensaje: 'Administrador Eliminado exitosamente' }
 };
+administradorServicio.login = async(credenciales) => {
+    console.log('servicio.login');
+    let resp;
+    let correcto = false;
+    try {
+        let hash = await administradorRepositorio.buscarAdministradorPorCorreo(credenciales.correo);
+        console.log('credenciales');
+        console.log(credenciales);
+        console.log('hash');
+        console.log(hash);
+        hash = bcrypt.compareSync(credenciales.contrasenia, hash.contrasenia);
+        console.log('true o false');
+        console.log(hash);
+        if (hash) {
+            resp = await administradorRepositorio.buscarAdministradorPorCorreo(credenciales.correo);
+            correcto = true;
+
+            return { resp, correcto, mensaje: 'Bienvenido de nuevo' + ' ' + resp.nombre };
+        } else {
+            return { correcto, mensaje: 'El correo o la contraseña son incorrectos' };
+        }
+
+    } catch (error) {
+        console.log(error);
+
+        return null;
+    }
+};
