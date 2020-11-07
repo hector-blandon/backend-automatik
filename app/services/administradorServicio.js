@@ -1,6 +1,7 @@
 const administradorServicio = module.exports;
 const bcrypt = require('bcrypt-nodejs');
 const administradorRepositorio = require('../repositories/administradorRepositorio');
+const emailControlador = require('../controllers/emailControlador');
 
 administradorServicio.crearAdministrador = async(administrador) => {
     console.log('administradorServicio.crearAdministrador');
@@ -63,12 +64,10 @@ administradorServicio.login = async(credenciales) => {
     let correcto = false;
     try {
         let hash = await administradorRepositorio.buscarAdministradorPorCorreo(credenciales.correo);
-        console.log('credenciales');
-        console.log(credenciales);
-        console.log('hash');
+        console.log('hash inicio');
         console.log(hash);
         hash = bcrypt.compareSync(credenciales.contrasenia, hash.contrasenia);
-        console.log('true o false');
+        console.log('hash');
         console.log(hash);
         if (hash) {
             resp = await administradorRepositorio.buscarAdministradorPorCorreo(credenciales.correo);
@@ -85,3 +84,30 @@ administradorServicio.login = async(credenciales) => {
         return null;
     }
 };
+administradorServicio.resetPassword = async(admin) => {
+
+    console.log('administrador.servicio.resetPassword');
+    console.log(admin);
+    const newPassword = Math.random().toString(36).substr(2, 8);
+    const hash = bcrypt.hashSync(newPassword);
+    const data = {
+        contrasenia: hash
+    };
+    const adminCorreo = await administradorRepositorio.buscarAdministradorPorCorreo(admin.correo);
+    const adminNit = await administradorRepositorio.buscarAdministradorPorNit(admin.nit);
+
+    if (adminCorreo.idAdmin === adminNit.idAdmin) {
+        console.log('admin');
+        console.log(adminCorreo);
+        console.log('correo');
+        const [adminActualizado] = await administradorRepositorio.actualizarAdministrador(data, adminCorreo.idAdmin);
+        await emailControlador.resetPassword(admin.correo, newPassword);
+        console.log(newPassword);
+
+
+        return adminActualizado;
+    }
+
+    return null;
+
+}

@@ -61,3 +61,14 @@ administradorControlador.login = async(req, res, next) => {
         .then((response) => res.send(response))
         .catch((error) => next(new BaseError(error.message)));
 };
+administradorControlador.resetPassword = async(req, res, next) => {
+    console.log('controlador.resetPassword');
+    const { body } = req;
+    try {
+        return administradorServicio.resetPassword(body)
+            .then((response) => res.send(response))
+            .catch((error) => next(new BaseError(error.message)));
+    } catch (error) {
+        return next(error);
+    }
+}
