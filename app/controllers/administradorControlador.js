@@ -3,6 +3,7 @@ const administradorServicio = require('../services/administradorServicio');
 const { BaseError } = require('../utils/ErrorHandlerMiddleware');
 const Validator = require('../validators/validator');
 const adminRegisterSchema = require('../validators/administradorRegisterSchema');
+const { response } = require('express');
 
 administradorControlador.crearAdministrador = async(req, res, next) => {
     console.log('administradorControlador.crearAdministrador');
@@ -17,6 +18,13 @@ administradorControlador.crearAdministrador = async(req, res, next) => {
     }
 };
 
+administradorControlador.buscarAdministradores = async(req, res, next) => {
+    console.log('administradorControlador.buscarAdministradores');
+    const { idTaller } = req.params;
+    return administradorServicio.buscarAdministradores()
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
 
 administradorControlador.buscarAdministradorPorNit = async(req, res, next) => {
     console.log('administradorControlador.buscarAdministradorPorNit');

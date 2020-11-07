@@ -26,7 +26,11 @@ vehiculoServicio.crearVehiculo = async(vehiculo) => {
 
 
 };
-
+vehiculoServicio.buscarVehiculos = async() => {
+    console.log('vehiculoServicio.buscarVehiculos');
+    const vehiculos = await vehiculoRepositorio.buscarVehiculos();
+    return vehiculos;
+};
 vehiculoServicio.buscarVehiculoPorId = async(idvehiculo) => {
     console.log('vehiculoServicio.buscarVehiculoPorId');
     const vehiculo = await vehiculoRepositorio.buscarVehiculoPorId(idvehiculo);

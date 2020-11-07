@@ -33,7 +33,11 @@ administradorServicio.crearAdministrador = async(administrador) => {
 
     return { mensaje: 'Ya existe un administrador con éste correo' };
 };
-
+administradorServicio.buscarAdministradores = async() => {
+    console.log('administradorServicio.buscarAdministradores');
+    const administrador = await administradorRepositorio.buscarAdministradores();
+    return administrador;
+};
 administradorServicio.buscarAdministradorPorNit = async(nit) => {
     console.log('MecanicoServicio.buscarAdministradorPorNit');
     const administrador = await administradorRepositorio.buscarAdministradorPorNit(nit);

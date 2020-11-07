@@ -27,6 +27,12 @@ piezaServicio.crearPieza = async(pieza) => {
 
 };
 
+piezaServicio.buscarPiezas = async() => {
+    console.log('piezaServicio.buscarPiezas');
+    const piezas = await piezaRepositorio.buscarPiezas();
+    return piezas;
+};
+
 piezaServicio.buscarPiezaPorId = async(idPieza) => {
     console.log('piezaServicio.buscarPiezaPorId');
     const pieza = await piezaRepositorio.buscarPiezaPorId(idPieza);

@@ -2,6 +2,7 @@ const administradorRepositorio = module.exports;
 const DB = require('../utils/DB');
 
 administradorRepositorio.crearAdministrador = (administrador) => DB('administrador').insert(administrador).returning('*');
+administradorRepositorio.buscarAdministradores = () => DB('administrador').select('*');
 administradorRepositorio.buscarAdministradorPorNit = (nit) => DB('administrador').select('*').where('nit', nit).first();
 administradorRepositorio.buscarAdministradorPorId = (idAdmin) => DB('administrador').select('*').where('idAdmin', idAdmin);
 administradorRepositorio.buscarAdministradorPorCorreo = (correo) => DB('administrador').select('*').where('correo', correo).first();

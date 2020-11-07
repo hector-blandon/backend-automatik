@@ -48,6 +48,13 @@ clienteControlador.crearCliente = async(req, res, next) => {
     }
 };
 
+clienteControlador.buscarClientes = async(req, res, next) => {
+    console.log('clienteControlador.buscarClientes');
+    const { idTaller } = req.params;
+    return clienteServicio.buscarClientes()
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
 
 clienteControlador.buscarClientePorNit = async(req, res, next) => {
     console.log('clienteControlador.buscarClientePorNit');

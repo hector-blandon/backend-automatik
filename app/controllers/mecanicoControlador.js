@@ -21,7 +21,13 @@ mecanicoControlador.crearMecanico = async(req, res, next) => {
     }
 };
 
-
+mecanicoControlador.buscarMecanicos = async(req, res, next) => {
+    console.log('mecanicoControlador.buscarMecanicos');
+    const { idTaller } = req.params;
+    return mecanicoServicio.buscarMecanicos()
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
 mecanicoControlador.buscarMecanicoPorNit = async(req, res, next) => {
     console.log('mecanicoControlador.buscarMecanicoPorNit');
     const { nit } = req.params;

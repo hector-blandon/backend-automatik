@@ -42,6 +42,11 @@ clienteServicio.crearCliente = async(cliente) => {
     return null;
 
 };
+clienteServicio.buscarClientes = async() => {
+    console.log('clienteServicio.buscarClientes');
+    const clientes = await clienteRepositorio.buscarClientes();
+    return clientes;
+};
 clienteServicio.buscarClientePorNit = async(nit) => {
     console.log('clienteServicio.buscarClientePorNit');
     const cliente = await clienteRepositorio.buscarClientePorNit(nit);
