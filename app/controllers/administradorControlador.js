@@ -17,13 +17,19 @@ administradorControlador.crearAdministrador = async(req, res, next) => {
     }
 };
 
-
+administradorControlador.buscarAdministradores = async(req, res, next) => {
+    console.log('administradorControlador.buscarAdministradores');
+    const { idTaller } = req.params;
+    return administradorServicio.buscarAdministradores(idTaller)
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
 administradorControlador.buscarAdministradorPorNit = async(req, res, next) => {
     console.log('administradorControlador.buscarAdministradorPorNit');
     const { nit } = req.params;
     return administradorServicio.buscarAdministradorPorNit(nit)
         .then((response) => res.send(response))
-        .catch((error) => next(new BaseError(error.message)));
+        .catch((error) => next(new BaseError(error.message))).catch();
 };
 administradorControlador.buscarAdministradorPorId = async(req, res, next) => {
     console.log('administradorControlador.buscarAdministradorPorId');

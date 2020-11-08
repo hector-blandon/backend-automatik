@@ -27,6 +27,11 @@ piezaServicio.crearPieza = async(pieza) => {
 
 };
 
+piezaServicio.buscarPiezas = async(idTaller) => {
+    console.log('piezaServicio.buscarPiezas');
+    const piezas = await piezaRepositorio.buscarPiezas(idTaller);
+    return piezas;
+};
 piezaServicio.buscarPiezaPorId = async(idPieza) => {
     console.log('piezaServicio.buscarPiezaPorId');
     const pieza = await piezaRepositorio.buscarPiezaPorId(idPieza);
@@ -36,7 +41,7 @@ piezaServicio.buscarPiezaPorId = async(idPieza) => {
 piezaServicio.actualizarPieza = async(pieza, idPieza) => {
     await piezaRepositorio.actualizarPieza(pieza, idPieza);
     return { mensaje: 'Pieza de stock actualizada exitosamente' }
-}
+};
 
 piezaServicio.eliminarPieza = async(idPieza) => {
     await piezaRepositorio.eliminarPieza(idPieza);
