@@ -15,7 +15,13 @@ vehiculoControlador.crearVehiculo = async(req, res, next) => {
     }
 };
 
-
+vehiculoControlador.buscarVehiculos = async(req, res, next) => {
+    console.log('vehiculoControlador.buscarVehiculos');
+    const { idCliente } = req.params;
+    return vehiculoServicio.buscarVehiculos(idCliente)
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
 vehiculoControlador.buscarVehiculoPorId = async(req, res, next) => {
     console.log('vehiculoControlador.buscarVehiculoPorId');
     const { idVehiculo } = req.params;

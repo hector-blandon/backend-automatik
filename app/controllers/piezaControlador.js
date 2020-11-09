@@ -15,7 +15,13 @@ piezaControlador.crearPieza = async(req, res, next) => {
     }
 };
 
-
+piezaControlador.buscarPiezas = async(req, res, next) => {
+    console.log('piezaControlador.buscarPiezas');
+    const { idTaller } = req.params;
+    return piezaServicio.buscarPiezas(idTaller)
+        .then((response) => res.send(response))
+        .catch((error) => next(new BaseError(error.message)));
+};
 piezaControlador.buscarPiezaPorId = async(req, res, next) => {
     console.log('piezaControlador.buscarPiezaPorId');
     const { idPieza } = req.params;

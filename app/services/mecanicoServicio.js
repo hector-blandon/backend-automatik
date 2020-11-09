@@ -28,6 +28,11 @@ mecanicoServicio.crearMecanico = async(mecanico) => {
     return null;
 
 };
+mecanicoServicio.buscarMecanicos = async(idTaller) => {
+    console.log('MecanicoServicio.buscarMecanicos');
+    const mecanicos = await mecanicoRepositorio.buscarMecanicos(idTaller);
+    return mecanicos;
+};
 mecanicoServicio.buscarMecanicoPorNit = async(nit) => {
     console.log('MecanicoServicio.buscarMecanicoPorNit');
     const mecanico = await mecanicoRepositorio.buscarMecanicoPorNit(nit);
