@@ -9,3 +9,4 @@ clienteRepositorio.buscarClientePorCorreo = (correo) => DB('cliente').select('*'
 clienteRepositorio.actualizarCliente = (cliente, idCliente) => DB('cliente').where('idCliente', idCliente).update(cliente).returning('*');
 clienteRepositorio.contarClientePorNit = (nit) => DB('cliente').count('*').where({ nit: nit }).first();
 clienteRepositorio.eliminarCliente = (idCliente) => DB('cliente').select('*').where('idCliente', idCliente).del().returning('*');
+clienteRepositorio.enviarNotificacionReparado = (idTaller) => DB('cliente').select('*').where('idTaller', idTaller);

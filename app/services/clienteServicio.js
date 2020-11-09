@@ -1,6 +1,7 @@
 const clienteServicio = module.exports;
 // const bcrypt = require('bcrypt-nodejs');
 const clienteRepositorio = require('../repositories/clienteRepositorio');
+const emailControlador = require('../controllers/emailControlador');
 // const nodemailer = require('nodemailer');
 // const emailController = require('../controllers/emailController');
 
@@ -74,4 +75,9 @@ clienteServicio.actualizarCliente = async(cliente, idCliente) => {
 clienteServicio.eliminarCliente = async(idCliente) => {
     const cliente = await clienteRepositorio.eliminarCliente(idCliente);
     return cliente
+};
+clienteServicio.enviarNotificacionReparado = async(idCliente) => {
+    const clienteCorreo = this.buscarClientePorId(idCliente);
+   const acliente =  await emailControlador.claimVehicle(admin.correo);
+    return cliente;
 };
