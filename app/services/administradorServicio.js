@@ -69,11 +69,7 @@ administradorServicio.login = async(credenciales) => {
     let correcto = false;
     try {
         let hash = await administradorRepositorio.buscarAdministradorPorCorreo(credenciales.correo);
-        console.log('hash inicio');
-        console.log(hash);
         hash = bcrypt.compareSync(credenciales.contrasenia, hash.contrasenia);
-        console.log('hash');
-        console.log(hash);
         if (hash) {
             resp = await administradorRepositorio.buscarAdministradorPorCorreo(credenciales.correo);
             correcto = true;
@@ -92,27 +88,57 @@ administradorServicio.login = async(credenciales) => {
 administradorServicio.resetPassword = async(admin) => {
 
     console.log('administrador.servicio.resetPassword');
-    console.log(admin);
     const newPassword = Math.random().toString(36).substr(2, 8);
     const hash = bcrypt.hashSync(newPassword);
     const data = {
         contrasenia: hash
     };
+    let correcto = false;
     const adminCorreo = await administradorRepositorio.buscarAdministradorPorCorreo(admin.correo);
     const adminNit = await administradorRepositorio.buscarAdministradorPorNit(admin.nit);
-
-    if (adminCorreo.idAdmin === adminNit.idAdmin) {
-        console.log('admin');
-        console.log(adminCorreo);
-        console.log('correo');
-        const [adminActualizado] = await administradorRepositorio.actualizarAdministrador(data, adminCorreo.idAdmin);
-        await emailControlador.resetPassword(admin.correo, newPassword);
-        console.log(newPassword);
+    if (adminCorreo !== undefined || adminNit !== undefined) {
+        if (adminCorreo.idAdmin === adminNit.idAdmin) {
+            correcto = true;
+            const [adminActualizado] = await administradorRepositorio.actualizarAdministrador(data, adminCorreo.idAdmin);
+            await emailControlador.resetPassword(admin.correo, newPassword, adminCorreo.nombre);
+            console.log(newPassword);
 
 
-        return adminActualizado;
+            return { correcto, mensaje: 'Contraseña enviada con éxito al correo ' + '' + adminActualizado.correo };
+        }
+
+    } else {
+        return { correcto, mensaje: 'El correo o el documento son incorrectos' };
+
     }
 
-    return null;
+
+
+};
+administradorServicio.cambiarPassword = async(idAdmin, nuevoPassword) => {
+
+    console.log('administradorServicio.cambiarPassword');
+    console.log(idAdmin);
+    console.log(nuevoPassword);
+    const hash = bcrypt.hashSync(nuevoPassword);
+    const data = {
+        contrasenia: hash
+    };
+    let correcto = false;
+    console.log(idAdmin);
+    const admin = await administradorRepositorio.buscarAdministradorPorId(idAdmin);
+    console.log(admin);
+    if (admin !== undefined) {
+        correcto = true;
+        const [adminActualizado] = await administradorRepositorio.actualizarAdministrador(data, admin.idAdmin);
+        await emailControlador.cambiarPassword(admin.correo, nuevoPassword, admin.nombre);
+        return { correcto, mensaje: 'Contraseña enviada con éxito al correo ' + '' + adminActualizado.correo };
+
+    } else {
+        return { correcto, mensaje: 'El Administrador no existe' };
+
+    }
+
+
 
 }

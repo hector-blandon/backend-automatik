@@ -78,3 +78,14 @@ administradorControlador.resetPassword = async(req, res, next) => {
         return next(error);
     }
 }
+administradorControlador.cambiarPassword = async(req, res, next) => {
+    console.log('controlador.cambiarPassword');
+    const { body } = req;
+    try {
+        return administradorServicio.cambiarPassword(body.idAdmin, body.nuevoPassword)
+            .then((response) => res.send(response))
+            .catch((error) => next(new BaseError(error.message)));
+    } catch (error) {
+        return next(error);
+    }
+}
