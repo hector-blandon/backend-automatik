@@ -46,6 +46,7 @@ router.delete('/vehiculos/eliminar/:idVehiculo', vehiculoControlador.eliminarVeh
 router.post('/login', administradorControlador.login);
 // Router Password
 router.post('/resetPassword', administradorControlador.resetPassword);
+router.post('/cambiarPassword', administradorControlador.cambiarPassword);
 router.post('/claimVehicle', clienteControlador.enviarNotificacionReparado);
 
 
