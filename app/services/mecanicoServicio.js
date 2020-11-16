@@ -46,7 +46,7 @@ mecanicoServicio.buscarMecanicoPorId = async(idMecanico) => {
 mecanicoServicio.buscarMecanicoPorCorreo = async(correo) => {
     console.log('clienteServicio.buscarMecanicoPorCorreo');
     const mecanico = await mecanicoRepositorio.buscarMecanicoPorCorreo(correo);
-    return cliente
+    return cliente;
 };
 mecanicoServicio.actualizarMecanico = async(mecanico, idMecanico) => {
     await mecanicoRepositorio.actualizarMecanico(mecanico, idMecanico);
