@@ -5,6 +5,7 @@ const administradorControlador = require('./controllers/administradorControlador
 const piezaControlador = require('./controllers/piezaControlador');
 const vehiculoControlador = require('./controllers/vehiculoControlador');
 const servicioControlador = require('./controllers/servicioControlador');
+const facturaControlador = require('./controllers/facturaControlador');
 
 const router = express.Router();
 // Router Cliente
@@ -59,5 +60,9 @@ router.get('/servicios/buscarPorVehiculo/:idVehiculo', servicioControlador.busca
 router.get('/servicios/buscarPorId/:idServicio', servicioControlador.buscarServiciosPorId);
 router.put('/servicios/actualizar/:idServicio', servicioControlador.actualizarServicio);
 router.put('/servicios/archivar/:idServicio', servicioControlador.archivarServicio);
+// Router Factura
+router.post('/facturas', facturaControlador.crearFactura);
+router.get('/facturas/buscarPorServicio/:idServicio', facturaControlador.buscarFacturaPorIdServicio);
+router.get('/facturas/buscarPorId/:idFactura', facturaControlador.buscarFacturaPorId);
 
 module.exports = router;
