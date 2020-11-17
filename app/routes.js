@@ -4,6 +4,7 @@ const mecanicoControlador = require('./controllers/mecanicoControlador');
 const administradorControlador = require('./controllers/administradorControlador');
 const piezaControlador = require('./controllers/piezaControlador');
 const vehiculoControlador = require('./controllers/vehiculoControlador');
+const servicioControlador = require('./controllers/servicioControlador');
 
 const router = express.Router();
 // Router Cliente
@@ -48,6 +49,15 @@ router.post('/login', administradorControlador.login);
 router.post('/resetPassword', administradorControlador.resetPassword);
 router.post('/cambiarPassword', administradorControlador.cambiarPassword);
 router.post('/claimVehicle', clienteControlador.enviarNotificacionReparado);
-
+// Router Servicio
+router.post('/servicios', servicioControlador.crearServicio);
+router.get('/servicios/buscarPorTaller/:idTaller', servicioControlador.buscarServicios);
+router.get('/servicios/buscarPorCliente/:idCliente', servicioControlador.buscarServiciosPorIdCliente);
+router.get('/servicios/buscarPorMecanico/:idMecanico', servicioControlador.buscarServiciosPorIdMecanico);
+router.get('/servicios/buscarPorFactura/:idFactura', servicioControlador.buscarServiciosPorIdFactura);
+router.get('/servicios/buscarPorVehiculo/:idVehiculo', servicioControlador.buscarServiciosPorIdVehiculo);
+router.get('/servicios/buscarPorId/:idServicio', servicioControlador.buscarServiciosPorId);
+router.put('/servicios/actualizar/:idServicio', servicioControlador.actualizarServicio);
+router.put('/servicios/archivar/:idServicio', servicioControlador.archivarServicio);
 
 module.exports = router;
