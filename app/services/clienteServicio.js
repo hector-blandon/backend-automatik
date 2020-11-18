@@ -1,22 +1,9 @@
 const clienteServicio = module.exports;
-// const bcrypt = require('bcrypt-nodejs');
 const clienteRepositorio = require('../repositories/clienteRepositorio');
 const emailControlador = require('../controllers/emailControlador');
-// const nodemailer = require('nodemailer');
-// const emailController = require('../controllers/emailController');
-
-// const authRepository = require('../repositories/authRepository');
-// const directionRepository = require('../repositories/directionRepository');
-// const log4j = require('../utils/logger');
-
-// const defaultLogger = log4j.getLogger('clienteServicio');
 
 clienteServicio.crearCliente = async(cliente) => {
     console.log('clienteServicio.crearCliente');
-    // const {
-    //     logger = defaultLogger,
-    // } = options;
-    // logger.info(`clienteServicio.crearCliente with ${JSON.stringify(cliente)}`);
     const {
         nombre: nombre,
         apellido: apellido,
@@ -39,8 +26,11 @@ clienteServicio.crearCliente = async(cliente) => {
             idTaller: idTaller
         });
         return { clienteCreado, mensaje: 'agregado' };
+    } else {
+        return { mensaje: 'Ya existe un cliente con ese nit' };
+
     }
-    return null;
+
 
 };
 clienteServicio.buscarClientes = async(idTaller) => {
@@ -57,7 +47,7 @@ clienteServicio.buscarClientePorNit = async(nit) => {
 };
 clienteServicio.buscarClientePorId = async(idCliente) => {
     console.log('clienteServicio.buscarClientePorId');
-    const cliente = await clienteRepositorio.buscarClientePorId(idCliente);
+    const [cliente] = await clienteRepositorio.buscarClientePorId(idCliente);
 
     return cliente
 };
@@ -69,15 +59,15 @@ clienteServicio.buscarClientePorCorreo = async(correo) => {
 };
 clienteServicio.actualizarCliente = async(cliente, idCliente) => {
     const [client] = await clienteRepositorio.actualizarCliente(cliente, idCliente);
-    return client;
+    return { client, mensaje: 'Cliente actualizado correctamente' };
 };
 
 clienteServicio.eliminarCliente = async(idCliente) => {
     const cliente = await clienteRepositorio.eliminarCliente(idCliente);
-    return cliente
+    return { cliente, mensaje: 'Cliente eliminado correctamente' }
 };
 clienteServicio.enviarNotificacionReparado = async(idCliente) => {
     const clienteCorreo = this.buscarClientePorId(idCliente);
-   const acliente =  await emailControlador.claimVehicle(admin.correo);
+    const acliente = await emailControlador.claimVehicle(admin.correo);
     return cliente;
 };
