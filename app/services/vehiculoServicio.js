@@ -7,23 +7,25 @@ vehiculoServicio.crearVehiculo = async(vehiculo) => {
         matricula: matricula,
         marca: marca,
         color: color,
-        modelo: modelo
-
-    } = vehiculo;
-    const [carro] = await vehiculoRepositorio.crearVehiculo({
-        matricula: matricula,
-        marca: marca,
-        color: color,
         modelo: modelo,
-        idCliente: 6
-    });
-    if (carro !== null) {
-        return { mensaje: 'Vehiculo creado correctamente' };
+        idCliente: idCliente
+    } = vehiculo;
+
+    const res = await vehiculoRepositorio.contarVehiculoPorMatricula(matricula);
+    console.log(res.count);
+    if (res.count < 1) {
+        const [carro] = await vehiculoRepositorio.crearVehiculo({
+            matricula: matricula,
+            marca: marca,
+            color: color,
+            modelo: modelo,
+            idCliente: idCliente
+        });
+        return { carro, mensaje: 'Vehiculo creado correctamente' };
+    } else {
+        return { mensaje: 'Ya existe un vehiculo con esa matricula' };
+
     }
-
-    return null;
-
-
 
 };
 

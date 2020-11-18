@@ -55,9 +55,19 @@ administradorServicio.buscarAdministradorPorCorreo = async(correo) => {
     return administrador;
 };
 administradorServicio.actualizarAdministrador = async(administrador, idAdmin) => {
-    await administradorRepositorio.actualizarAdministrador(administrador, idAdmin);
-    return { mensaje: 'Administrador actualizado exitosamente' }
-}
+    console.log('servicioadministrador.actualizar');
+    let correcto = false;
+    try {
+        await administradorRepositorio.actualizarAdministrador(administrador, idAdmin);
+        correcto = true;
+        return { correcto, mensaje: 'Administrador actualizado exitosamente' }
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+
+
+};
 
 administradorServicio.eliminarAdministrador = async(idAdmin) => {
     await administradorRepositorio.eliminarAdministrador(idAdmin);
