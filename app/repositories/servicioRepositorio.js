@@ -4,7 +4,7 @@ const DB = require('../utils/DB');
 
 
 servicioRepositorio.crearServicio = (servicio) => DB('servicio').insert(servicio).returning('*');
-servicioRepositorio.buscarServicios = (idTaller) => DB('servicio').select('*').where('idTaller', idTaller);
+servicioRepositorio.buscarServicios = (idTaller) => DB('servicio').select('*').where({ 'idTaller': idTaller } && { 'status': true });
 servicioRepositorio.buscarServiciosPorIdCliente = (idCliente) => DB('servicio').select('*').where('idCliente', idCliente);
 servicioRepositorio.buscarServiciosPorIdMecanico = (idMecanico) => DB('servicio').select('*').where('idMecanico', idMecanico);
 servicioRepositorio.buscarServiciosPorIdFactura = (idFactura) => DB('servicio').select('*').where('idFactura', idFactura).first();
