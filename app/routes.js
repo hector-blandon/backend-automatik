@@ -8,7 +8,7 @@ const servicioControlador = require('./controllers/servicioControlador');
 const facturaControlador = require('./controllers/facturaControlador');
 const accionRealizadaControlador = require('./controllers/accionRealizadaControlador');
 const repuestoUtilizadoControlador = require('./controllers/repuestoUtilizadoControlador');
-
+const fabricanteControlador = require('./controllers/fabricanteControlador');
 
 const router = express.Router();
 // Router Cliente
@@ -73,5 +73,11 @@ router.get('/acciones/buscarAccionPorIdServicio/:idServicio', accionRealizadaCon
 // Router Repuesto Utilizado
 router.post('/repuestos', repuestoUtilizadoControlador.crearRepuesto);
 router.get('/repuestos/buscarRepuestosPorIdServicio/:idServicio', repuestoUtilizadoControlador.buscarRepuestosPorIdServicio);
-
+// Router Fabricante
+router.post('/fabricante', fabricanteControlador.crearFabricante);
+router.get('/fabricante/buscarFabricantes', fabricanteControlador.buscarFabricantes);
+router.get('/fabricante/buscarPorNit/:nit', fabricanteControlador.buscarFabricantePorNit);
+router.get('/fabricante/buscarPorId/:idFabricante', fabricanteControlador.buscarFabricantePorId);
+router.put('/fabricante/actualizar/:idFabricante', fabricanteControlador.actualizarFabricante);
+router.delete('/fabricante/eliminar/:idFabricante', fabricanteControlador.eliminarFabricante);
 module.exports = router;
