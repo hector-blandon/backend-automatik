@@ -7,7 +7,7 @@ servicioServicio.crearServicio = async(servicio) => {
 
     const {
 
-        fechaIngreso: fechaIngreso,
+
         fechaSalida: fechaSalida,
         kilometraje: kilometraje,
         falla: falla,
@@ -19,6 +19,7 @@ servicioServicio.crearServicio = async(servicio) => {
     } = servicio;
     const idTaller = 1;
     const status = true;
+    const fechaIngreso = new Date();
     const [servicioCreado] = await servicioRepositorio.crearServicio({
         fechaIngreso: fechaIngreso,
         fechaSalida: fechaSalida,
