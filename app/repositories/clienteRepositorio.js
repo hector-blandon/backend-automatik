@@ -2,7 +2,7 @@ const clienteRepositorio = module.exports;
 const DB = require('../utils/DB');
 
 clienteRepositorio.crearCliente = (cliente) => DB('cliente').insert(cliente).returning('*');
-clienteRepositorio.buscarClientes = (idTaller) => DB('cliente').select('*').where('idTaller', idTaller);
+clienteRepositorio.buscarClientes = (idTaller) => DB('cliente').select('*').where('idTaller', idTaller).orderBy('idCliente', 'asc');
 clienteRepositorio.buscarClientePorNit = (nit) => DB('cliente').select('*').where('nit', nit).first();
 clienteRepositorio.buscarClientePorId = (idCliente) => DB('cliente').select('*').where('idCliente', idCliente);
 clienteRepositorio.buscarClientePorCorreo = (correo) => DB('cliente').select('*').where('correo', correo);
