@@ -2,7 +2,7 @@ const mecanicoRepositorio = module.exports;
 const DB = require('../utils/DB');
 
 mecanicoRepositorio.crearMecanico = (mecanico) => DB('mecanico').insert(mecanico).returning('*');
-mecanicoRepositorio.buscarMecanicos = (idTaller) => DB('mecanico').select('*').where('idTaller', idTaller);
+mecanicoRepositorio.buscarMecanicos = (idTaller) => DB('mecanico').select('*').where('idTaller', idTaller).orderBy('idMecanico', 'asc');
 mecanicoRepositorio.buscarMecanicoPorNit = (nit) => DB('mecanico').select('*').where('nit', nit).first();
 mecanicoRepositorio.buscarMecanicoPorId = (idMecanico) => DB('mecanico').select('*').where('idMecanico', idMecanico).first();
 mecanicoRepositorio.buscarMecanicoPorCorreo = (correo) => DB('mecanico').select('*').where('correo', correo).first();
