@@ -41,8 +41,17 @@ vehiculoServicio.buscarVehiculoPorId = async(idvehiculo) => {
 };
 
 vehiculoServicio.actualizarvehiculo = async(vehiculo, idvehiculo) => {
-    await vehiculoRepositorio.actualizarVehiculo(vehiculo, idvehiculo);
-    return { mensaje: 'Vehiculo actualizado exitosamente' }
+    console.log('servicioVehiculo.actualizar');
+    let correcto = false;
+    try {
+        await vehiculoRepositorio.actualizarVehiculo(vehiculo, idvehiculo);
+        correcto = true;
+        return { correcto, mensaje: 'Vehiculo actualizado exitosamente' }
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+
 }
 
 vehiculoServicio.eliminarVehiculo = async(idvehiculo) => {

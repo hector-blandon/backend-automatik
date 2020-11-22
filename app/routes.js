@@ -47,6 +47,7 @@ router.get('/vehiculos/buscarPorCliente/:idCliente', vehiculoControlador.buscarV
 router.get('/vehiculos/buscarPorId/:idVehiculo', vehiculoControlador.buscarVehiculoPorId);
 router.put('/vehiculos/actualizar/:idVehiculo', vehiculoControlador.actualizarVehiculo);
 router.delete('/vehiculos/eliminar/:idVehiculo', vehiculoControlador.eliminarVehiculo);
+router.put('vehiculos/actualizar/:idVehiculo', vehiculoControlador.actualizarVehiculo);
 // Router Login
 router.post('/login', administradorControlador.login);
 // Router Password
