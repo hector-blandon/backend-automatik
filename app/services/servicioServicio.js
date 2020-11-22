@@ -19,7 +19,24 @@ servicioServicio.crearServicio = async(servicio) => {
     } = servicio;
     const idTaller = 1;
     const status = true;
-    const fechaIngreso = new Date();
+    const fecha = new Date();
+    console.log('fecha', fecha);
+    let dd = fecha.getDate();
+    let mm = fecha.getMonth() + 1;
+    if (mm === 01) mm = 'ENERO';
+    if (mm === 02) mm = 'FEBRERO';
+    if (mm === 03) mm = 'MARZO';
+    if (mm === 04) mm = 'ABRIL';
+    if (mm === 05) mm = 'MAYO';
+    if (mm === 06) mm = 'JUNIO';
+    if (mm === 07) mm = 'JULIO';
+    if (mm === 08) mm = 'AGOSTO';
+    if (mm === 09) mm = 'SEPTIEMBRE';
+    if (mm === 10) mm = 'OCTUBRE';
+    if (mm === 11) mm = 'NOVIEMBRE';
+    if (mm === 12) mm = 'DICIEMBRE';
+    let yyyy = fecha.getFullYear();
+    const fechaIngreso = dd + '-' + mm + '-' + yyyy;
     const [servicioCreado] = await servicioRepositorio.crearServicio({
         fechaIngreso: fechaIngreso,
         fechaSalida: fechaSalida,
@@ -74,7 +91,23 @@ servicioServicio.actualizarServicio = async(servicio, idServicio) => {
 };
 servicioServicio.archivarServicio = async(servicio, idServicio) => {
     servicio.status = false;
-    servicio.fechaSalida = new Date();
-    await servicioRepositorio.archivarServicio(servicio, idServicio);
-    return { mensaje: 'Servicio archivado exitosamente' };
+    const fecha = new Date();
+    let dd = fecha.getDate();
+    let mm = fecha.getMonth() + 1;
+    if (mm === 01) mm = 'ENERO';
+    if (mm === 02) mm = 'FEBRERO';
+    if (mm === 03) mm = 'MARZO';
+    if (mm === 04) mm = 'ABRIL';
+    if (mm === 05) mm = 'MAYO';
+    if (mm === 06) mm = 'JUNIO';
+    if (mm === 07) mm = 'JULIO';
+    if (mm === 08) mm = 'AGOSTO';
+    if (mm === 09) mm = 'SEPTIEMBRE';
+    if (mm === 10) mm = 'OCTUBRE';
+    if (mm === 11) mm = 'NOVIEMBRE';
+    if (mm === 12) mm = 'DICIEMBRE';
+    let yyyy = fecha.getFullYear();
+    servicio.fechaSalida = dd + '-' + mm + '-' + yyyy;
+    const [resp] = await servicioRepositorio.archivarServicio(servicio, idServicio);
+    return { resp, mensaje: 'Servicio archivado exitosamente' };
 };
