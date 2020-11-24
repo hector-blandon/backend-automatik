@@ -167,7 +167,7 @@ emailControlador.claimVehicle = (email, documento) => {
         subject: 'Notificación entrega de vehículo',
         attachments: [{
             filename: documento + '.pdf',
-            path: '/home/danielafpolania/Descargas/' + documento + '.pdf',
+            path: process.env.HOME + '/Descargas/' + documento + '.pdf',
             contentType: 'application/pdf'
         }],
         html: `<!DOCTYPE html>,
