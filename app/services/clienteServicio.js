@@ -37,25 +37,25 @@ clienteServicio.buscarClientes = async(idTaller) => {
     console.log('clienteServicio.buscarClientes');
     const clientes = await clienteRepositorio.buscarClientes(idTaller);
 
-    return clientes
+    return clientes;
 };
 clienteServicio.buscarClientePorNit = async(nit) => {
     console.log('clienteServicio.buscarClientePorNit');
     const cliente = await clienteRepositorio.buscarClientePorNit(nit);
 
-    return cliente
+    return cliente;
 };
 clienteServicio.buscarClientePorId = async(idCliente) => {
     console.log('clienteServicio.buscarClientePorId');
     const [cliente] = await clienteRepositorio.buscarClientePorId(idCliente);
 
-    return cliente
+    return cliente;
 };
 clienteServicio.buscarClientePorCorreo = async(correo) => {
     console.log('clienteServicio.buscarClientePorCorreo');
     const cliente = await clienteRepositorio.buscarClientePorCorreo(correo);
 
-    return cliente
+    return cliente;
 };
 clienteServicio.actualizarCliente = async(cliente, idCliente) => {
     const [client] = await clienteRepositorio.actualizarCliente(cliente, idCliente);
@@ -64,10 +64,19 @@ clienteServicio.actualizarCliente = async(cliente, idCliente) => {
 
 clienteServicio.eliminarCliente = async(idCliente) => {
     const cliente = await clienteRepositorio.eliminarCliente(idCliente);
-    return { cliente, mensaje: 'Cliente eliminado correctamente' }
+    return { cliente, mensaje: 'Cliente eliminado correctamente' };
 };
-clienteServicio.enviarNotificacionReparado = async(idCliente) => {
-    const clienteCorreo = this.buscarClientePorId(idCliente);
-    const acliente = await emailControlador.claimVehicle(admin.correo);
-    return cliente;
+clienteServicio.enviarNotificacionReparado = async(idCliente, documento) => {
+    console.log('clienteServicio.notificacion');
+    console.log(idCliente);
+    console.log(documento);
+    let correcto = false;
+    const cliente = await this.buscarClientePorId(idCliente);
+    console.log(cliente);
+    if (cliente != undefined) {
+        correcto = true;
+        await emailControlador.claimVehicle(cliente.correo, documento);
+        return { correcto, mensaje: 'Notificación enviada con éxito al correo ' + '' + cliente.correo };
+    }
+    return { correcto, mensaje: 'El Cliente no existe' };
 };
