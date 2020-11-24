@@ -160,12 +160,18 @@ emailControlador.cambiarPassword = (email, password, nombre) => {
 };
 
 
-emailControlador.claimVehicle = (email) => {
+emailControlador.claimVehicle = (email, documento) => {
     const mailOptions = {
         from: 'latamsoftware1@gmail.com',
         to: email,
         subject: 'Notificación entrega de vehículo',
-        html: `<!DOCTYPE html>
+        attachments: [{
+            filename: documento + '.pdf',
+            path: '/home/danielafpolania/Descargas/' + documento + '.pdf',
+            contentType: 'application/pdf'
+        }],
+        html: `<!DOCTYPE html>,
+
         <html>
         <head>
             <title> Template</title>
