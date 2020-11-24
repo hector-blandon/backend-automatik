@@ -67,7 +67,16 @@ clienteServicio.eliminarCliente = async(idCliente) => {
     return { cliente, mensaje: 'Cliente eliminado correctamente' };
 };
 clienteServicio.enviarNotificacionReparado = async(idCliente, documento) => {
-    const clienteCorreo = this.buscarClientePorId(idCliente);
-    const cliente = await emailControlador.claimVehicle(clienteCorreo.correo, documento);
-    return cliente;
+    console.log('clienteServicio.notificacion');
+    console.log(idCliente);
+    console.log(documento);
+    let correcto = false;
+    const cliente = await this.buscarClientePorId(idCliente);
+    console.log(cliente);
+    if (cliente != undefined) {
+        correcto = true;
+        await emailControlador.claimVehicle(cliente.correo, documento);
+        return { correcto, mensaje: 'Notificación enviada con éxito al correo ' + '' + cliente.correo };
+    }
+    return { correcto, mensaje: 'El Cliente no existe' };
 };
