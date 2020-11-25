@@ -92,11 +92,14 @@ clienteControlador.eliminarCliente = async(req, res, next) => {
         .catch((error) => next(new BaseError(error.message)));
 };
 
-
-
 clienteControlador.enviarNotificacionReparado = async(req, res, next) => {
+    console.log('controlador.notificacion');
     const { body } = req;
-        return clienteServicio.enviarNotificacionReparado(body)
+    try {
+        return clienteServicio.enviarNotificacionReparado(body.idCliente, body.documento)
             .then((response) => res.send(response))
             .catch((error) => next(new BaseError(error.message)));
+    } catch (error) {
+        return next(error);
+    }
 };
