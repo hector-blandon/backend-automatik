@@ -1,10 +1,10 @@
 const MAX_CONNECTION_POOLSIZE = 5;
 
 const {
-//     DB_NAME = 'automatik',
-//         DB_USER = 'postgres',
-//         DB_PASS = '123456',
-//         DB_HOST = 'localhost',
+    // DB_NAME = 'automatik',
+    //     DB_USER = 'postgres',
+    //     DB_PASS = '123456',
+    //     DB_HOST = 'localhost',
     //     DB_PORT = 5432,
     DB_NAME = 'd3p941o1hdj9ve',
     DB_USER = 'ubfqjhmiktpikb',
